@@ -6,6 +6,8 @@ import Blog from '../Pages/Blog/Blog';
 import Packages from '../Pages/Packages/Packages';
 import Login from '../Pages/Login/Login';
 import Signup from '../Pages/Signup/Signup';
+import PrivateRoute from './PrivateRoute';
+import NotFound from '../Pages/NotFound/NotFound';
 
 
 const Routes = createBrowserRouter([
@@ -36,9 +38,14 @@ const Routes = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '*',
+                element: <NotFound></NotFound>
             }
         ]
     }
+    
 ]);
 
 export default Routes;

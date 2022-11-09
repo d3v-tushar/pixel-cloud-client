@@ -1,6 +1,8 @@
 import React from "react";
+import useTitle from "../../CustomHook/useTitle";
 
 const Blog = () => {
+  useTitle('Blog');
   return (
     <div className=" grid gap-3 justify-items-center my-10">
       <h2 className="text-5xl font-bold">BLOG</h2>

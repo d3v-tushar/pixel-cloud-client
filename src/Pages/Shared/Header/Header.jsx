@@ -1,17 +1,23 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import Logo from '../../../assets/logo.png';
 import { AuthContext } from "../../../Context/AuthProvider";
 
 const Header = () => {
-  const user = useContext(AuthContext);
+  const {user, logOut} = useContext(AuthContext);
+     //User Log Out
+     const handleLogOut = () =>{
+      logOut()
+      .then(() => console.log('User Logged Out'))
+      .catch(error => console.error(error.message))
+  };
+
   const linkCSS = 'flex items-center mx-3 px-4 -mb-1 border-b-2 dark:border-transparent font-semibold';
   const active = 'flex items-center mx-3 px-4 -mb-1 border-b-2 dark:border-transparent font-semibold dark:text-violet-400 dark:border-violet-400';
   return (
     <div>
-      <header className="container px-4 mx-auto rounded dark:bg-gray-900">
+      <header className="container px-2 mx-auto rounded dark:bg-gray-900">
         <div className="container flex justify-between h-16 mx-auto md:justify-center md:space-x-8">
-        <button className="btn btn-ghost my-auto">Signup</button>
           <ul className="items-stretch hidden space-x-3 md:flex">
             <li className="flex">
               <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/home'>Home</NavLink>
@@ -20,7 +26,7 @@ const Header = () => {
             <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/packages'>Packages</NavLink>
             </li>
             <li className="flex">
-            <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/menu3'>Menu3</NavLink>
+            <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/gallary'>Gallary</NavLink>
             </li>
           </ul>
           <a
@@ -34,20 +40,20 @@ const Header = () => {
           </a>
           <ul className="items-stretch hidden space-x-3 md:flex">
             <li className="flex">
+            <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/reviews'>Reviews</NavLink>
+            </li>
+            <li className="flex">
             <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/blog'>Blog</NavLink>
             </li>
             <li className="flex">
-            <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/faq'>FAQ</NavLink>
-            </li>
-            <li className="flex">
-            <Link className={({isActive}) => isActive ? active : linkCSS}>
-              {
-                user?.uid ? <button>Logout</button> : <button className="my-auto">Login</button>
-              }
-              </Link>
+            {
+              user?.uid ? <NavLink className={({isActive}) => isActive ? linkCSS : linkCSS}><button onClick={handleLogOut}>Logout</button>
+              </NavLink> 
+              : <NavLink to='/login' className={({isActive}) => isActive ? active : linkCSS}>Login
+              </NavLink> 
+            }
             </li>
           </ul>
-          <button className="btn btn-ghost my-auto">Login</button>
           <button title="Button" type="button" className="p-4 md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"

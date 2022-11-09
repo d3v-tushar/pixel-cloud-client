@@ -12,31 +12,6 @@ const Main = () => {
             <Outlet></Outlet>
             <Footer></Footer>
             </div>
-            
-
-            {/* <div className="carousel w-full rounded-md xl:col-span-3">
-        <div className="carousel-item w-1/2">
-            <img src="https://placeimg.com/256/400/arch" className="w-full" />
-        </div> 
-        <div className="carousel-item w-1/2">
-            <img src="https://placeimg.com/256/400/arch" className="w-full" />
-        </div> 
-        <div className="carousel-item w-1/2">
-            <img src="https://placeimg.com/256/400/arch" className="w-full" />
-        </div> 
-        <div className="carousel-item w-1/2">
-            <img src="https://placeimg.com/256/400/arch" className="w-full" />
-        </div> 
-        <div className="carousel-item w-1/2">
-            <img src="https://placeimg.com/256/400/arch" className="w-full" />
-        </div> 
-        <div className="carousel-item w-1/2">
-            <img src="https://placeimg.com/256/400/arch" className="w-full" />
-        </div> 
-        <div className="carousel-item w-1/2">
-            <img src="https://placeimg.com/256/400/arch" className="w-full" />
-        </div>
-        </div> */}
         </div>
     );
 };

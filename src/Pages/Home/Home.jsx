@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import HomePackages from "./HomePackages";
 import HomeStats from "./HomeStats";
 
+// import Banner from "./Banner";
+import Carosel from "./Carosel";
+
 const Home = () => {
+
   return (
     <div className="min-h-screen dark:bg-gray-800 dark:text-gray-100">
         <main>
@@ -54,29 +58,7 @@ const Home = () => {
                   </button>
                 </form>
               </div>
-              <div className="carousel w-full rounded-md xl:col-span-3">
-              <div className="carousel-item w-1/2">
-                  <img src="https://placeimg.com/256/400/arch" className="w-full" />
-              </div> 
-              <div className="carousel-item w-1/2">
-                  <img src="https://placeimg.com/256/400/arch" className="w-full" />
-              </div> 
-              <div className="carousel-item w-1/2">
-                  <img src="https://placeimg.com/256/400/arch" className="w-full" />
-              </div> 
-              <div className="carousel-item w-1/2">
-                  <img src="https://placeimg.com/256/400/arch" className="w-full" />
-              </div> 
-              <div className="carousel-item w-1/2">
-                  <img src="https://placeimg.com/256/400/arch" className="w-full" />
-              </div> 
-              <div className="carousel-item w-1/2">
-                  <img src="https://placeimg.com/256/400/arch" className="w-full" />
-              </div> 
-              <div className="carousel-item w-1/2">
-                  <img src="https://placeimg.com/256/400/arch" className="w-full" />
-              </div>
-              </div>
+              <Carosel></Carosel>
             </section>
             <HomePackages></HomePackages>
             <HomeStats></HomeStats>

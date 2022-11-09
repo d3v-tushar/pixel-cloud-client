@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import useTitle from "../../CustomHook/useTitle";
 
 const Login = () => {
+    useTitle('Login')
   const { signInExistingUser, signInWithGoogle, signInWithGitHub } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -143,6 +145,7 @@ const Login = () => {
 
       <div className="my-6 space-y-4">
         <button
+        onClick={handleGoogleSignIn}
           aria-label="Login with Google"
           type="button"
           className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 border-gray-400 focus:ring-violet-400"
