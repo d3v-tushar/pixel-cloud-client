@@ -23,12 +23,12 @@ const Home = () => {
                   The ultimate design toolkit for savvy technology startups.
                 </p>
                 <form
-                  novalidate=""
+                  noValidate=""
                   action=""
                   className="self-stretch space-y-3 ng-untouched ng-pristine ng-valid"
                 >
                   <div>
-                    <label for="name" className="text-sm sr-only">
+                    <label htmlFor="name" className="text-sm sr-only">
                       Your name
                     </label>
                     <input
@@ -39,7 +39,7 @@ const Home = () => {
                     />
                   </div>
                   <div>
-                    <label for="lastname" className="text-sm sr-only">
+                    <label htmlFor="lastname" className="text-sm sr-only">
                       Email address
                     </label>
                     <input

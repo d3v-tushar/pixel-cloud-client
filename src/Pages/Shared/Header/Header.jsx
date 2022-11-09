@@ -1,10 +1,12 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 import Logo from '../../../assets/logo.png';
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const Header = () => {
-    const linkCSS = 'flex items-center mx-3 px-4 -mb-1 border-b-2 dark:border-transparent font-semibold';
-    const active = 'flex items-center mx-3 px-4 -mb-1 border-b-2 dark:border-transparent font-semibold dark:text-violet-400 dark:border-violet-400';
+  const user = useContext(AuthContext);
+  const linkCSS = 'flex items-center mx-3 px-4 -mb-1 border-b-2 dark:border-transparent font-semibold';
+  const active = 'flex items-center mx-3 px-4 -mb-1 border-b-2 dark:border-transparent font-semibold dark:text-violet-400 dark:border-violet-400';
   return (
     <div>
       <header className="container px-4 mx-auto rounded dark:bg-gray-900">
@@ -38,13 +40,11 @@ const Header = () => {
             <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/faq'>FAQ</NavLink>
             </li>
             <li className="flex">
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="flex items-center px-4 -mb-1 border-b-2 dark:border-transparent"
-              >
-                menu 6
-              </a>
+            <Link className={({isActive}) => isActive ? active : linkCSS}>
+              {
+                user?.uid ? <button>Logout</button> : <button className="my-auto">Login</button>
+              }
+              </Link>
             </li>
           </ul>
           <button className="btn btn-ghost my-auto">Login</button>
