@@ -8,6 +8,7 @@ import Login from '../Pages/Login/Login';
 import Signup from '../Pages/Signup/Signup';
 import PrivateRoute from './PrivateRoute';
 import NotFound from '../Pages/NotFound/NotFound';
+import PackageDetails from '../Pages/Packages/PackageDetails';
 
 
 const Routes = createBrowserRouter([
@@ -27,6 +28,11 @@ const Routes = createBrowserRouter([
                 path: '/packages',
                 element: <Packages></Packages>,
                 loader: () => fetch('http://localhost:5000/packages')
+            },
+            {
+                path: 'packages/:id',
+                element: <PackageDetails></PackageDetails>,
+                loader: async({params}) => fetch(`http://localhost:5000/packages/${params.id}`)
             },
             {
                 path: '/login',

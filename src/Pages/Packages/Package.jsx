@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Package = ({eachpackage}) => {
-    const {features, price, img, title} = eachpackage;
+    const {features, price, img, title, _id} = eachpackage;
   return (
     <div>
         <div className="max-w-md rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
@@ -15,7 +16,7 @@ const Package = ({eachpackage}) => {
             <ul className="flex-1 space-y-2">
                   {
                     features.map((feature, index) =>
-                    <li className="flex items-center space-x-2">
+                    <li key={index} className="flex items-center space-x-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
@@ -33,7 +34,7 @@ const Package = ({eachpackage}) => {
                   }
                 </ul>
 		</div>
-		<button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900">Learn More</button>
+		<Link to={`/packages/${_id}`}><button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900">Learn More</button></Link>
 	</div>
 </div>
       {/* <div className="flex w-full mb-8 sm:px-4 md:w-1/2 lg:w-auto lg:mb-0">
