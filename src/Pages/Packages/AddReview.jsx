@@ -19,8 +19,9 @@ const AddReview = ({packageId}) => {
         const picture = user.photoURL;
         let time = new Date().toLocaleTimeString();
         let date = new Date().toLocaleDateString();
+        const localTime = new Date().toLocaleString()
         // console.log(message,time, date, rate, name, picture, packageId);
-        const review = {packageId, name, picture, time, date, message, rate}
+        const review = {packageId, name, picture, time, date, message, rate, localTime}
 
         fetch('http://localhost:5000/reviews', {
         method: 'POST',
@@ -35,8 +36,6 @@ const AddReview = ({packageId}) => {
                 let newDisplayReview = [...savedReview];
                 let addNew = newDisplayReview.unshift(review);
                 setSavedReview(newDisplayReview);
-
-                
                 toast('Review Added Successfully!');
                 form.reset();
             }

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Package = ({ eachpackage }) => {
-  const { features, price, img, title, _id } = eachpackage;
+const HomeCards = ({ data }) => {
+    const { features, price, img, title, _id } = data;
   return (
     <div>
       <div className="max-w-md rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
@@ -53,4 +53,4 @@ const Package = ({ eachpackage }) => {
   );
 };
 
-export default Package;
+export default HomeCards;
