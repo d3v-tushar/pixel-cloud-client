@@ -24,6 +24,19 @@ const AddService = () => {
         //console.log(title, img, price, features, publishTime, discription, publisher);
         const newPackage = {title, img, price, features, publishTime, discription, publisher};
         console.log(newPackage);
+
+        fetch('https://pixel-cloud-server.vercel.app/packages', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(newPackage)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            toast('Service Added Successfully!');
+            form.reset();
+        })
     }
 
     return (
@@ -39,29 +52,29 @@ const AddService = () => {
 			<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="firstname" className="text-sm">Package Title</label>
-					<input name='title' id="firstname" type="text" placeholder="Title" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='title' id="firstname" type="text" placeholder="Title" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="lastname" className="text-sm">Image Url for the package</label>
-					<input name='img' id="lastname" type="text" placeholder="Image Url" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='img' id="lastname" type="text" placeholder="Image Url" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="email" className="text-sm">Price of the package</label>
-					<input name='price' id="email" type="number" placeholder="Price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='price' id="email" type="number" placeholder="Price" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
 				</div>
 				<div className="col-span-full">
 					<label htmlFor="address" className="text-sm">Package Features</label>
-					<input name='feature1' id="address" type="text" placeholder="Feature 1" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
-					<input name='feature2' id="address" type="text" placeholder="Feature 2" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
-					<input name='feature3' id="address" type="text" placeholder="Feature 3" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
-					<input name='feature4' id="address" type="text" placeholder="Feature 4" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
-					<input name='feature5' id="address" type="text" placeholder="Feature 5" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
-					<input name='feature6' id="address" type="text" placeholder="Feature 6" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
-					<input name='feature7' id="address" type="text" placeholder="Feature 7" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='feature1' id="address" type="text" placeholder="Feature 1" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='feature2' id="address" type="text" placeholder="Feature 2" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='feature3' id="address" type="text" placeholder="Feature 3" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='feature4' id="address" type="text" placeholder="Feature 4" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='feature5' id="address" type="text" placeholder="Feature 5" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='feature6' id="address" type="text" placeholder="Feature 6" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
+					<input required name='feature7' id="address" type="text" placeholder="Feature 7" className="w-full my-3 rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white" />
 				</div>
 				<div className="col-span-full sm:col-span-2">
 					<label htmlFor="state" className="text-sm">Discription</label>
-                    <textarea name="discription" className='w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white' id="" cols="30" rows="10"></textarea>
+                    <textarea required name="discription" className='w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white' id="" cols="30" rows="10"></textarea>
 				</div>
                 <button className='btn btn-lg btn-wide  btn-primary' type="submit">Add Package</button>
 			</div>
