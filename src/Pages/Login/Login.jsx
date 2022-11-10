@@ -5,7 +5,7 @@ import { AuthContext } from "../../Context/AuthProvider";
 import useTitle from "../../CustomHook/useTitle";
 
 const Login = () => {
-    useTitle('Login')
+    useTitle('Login');
   const { signInExistingUser, signInWithGoogle, signInWithGitHub } =
     useContext(AuthContext);
   const navigate = useNavigate();

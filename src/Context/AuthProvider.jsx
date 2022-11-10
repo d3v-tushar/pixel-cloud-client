@@ -57,7 +57,7 @@ const AuthProvider = ({children}) => {
         return updatePassword(currentUser, password)
     };
 
-    const authInfo = {user, loading, updateNewPassword, newUserRegister, emailVerification, signInExistingUser, updateUserProfileData, signInWithGoogle, signInWithGitHub, logOut };
+    const authInfo = {user, loading, updateNewPassword, newUserRegister, emailVerification, signInExistingUser, updateUserProfileData, signInWithGoogle, logOut };
 
     
     return (

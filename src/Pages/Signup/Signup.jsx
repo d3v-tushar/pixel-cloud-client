@@ -3,8 +3,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import useTitle from "../../CustomHook/useTitle";
 
 const Signup = () => {
+  useTitle('Register')
   const { newUserRegister, emailVerification, updateUserProfileData } =
     useContext(AuthContext);
   const [error, setError] = useState(false);

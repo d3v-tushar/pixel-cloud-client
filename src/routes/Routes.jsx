@@ -11,6 +11,7 @@ import NotFound from '../Pages/NotFound/NotFound';
 import PackageDetails from '../Pages/Packages/PackageDetails';
 import MyReviews from '../Pages/MyReviews/MyReviews';
 import AddService from '../Pages/AddService/AddService';
+import Gallary from '../Gallary/Gallary';
 
 
 const Routes = createBrowserRouter([
@@ -55,6 +56,10 @@ const Routes = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: "/gallary",
+                element: <Gallary></Gallary>
             },
             {
                 path: '*',

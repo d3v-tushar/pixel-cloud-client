@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../CustomHook/useTitle";
 
 const NotFound = () => {
+  useTitle('404')
   return (
     <div>
       <section className="flex items-center h-screen p-16 dark:bg-gray-900 dark:text-gray-100">
