@@ -25,7 +25,7 @@ const HomePackages = () => {
 		</div>
 	</div>
     <div className="text-center mt-10">
-    <Link to='/packages'><button type="button" className="px-10 py-3 font-semibold rounded-full text-xl dark:bg-gray-100 dark:text-gray-800">See All</button></Link>
+    <Link to='/packages'><button type="button" className="btn-info px-10 py-3 font-semibold rounded-full text-xl dark:bg-gray-100 dark:text-gray-800">See All</button></Link>
     </div>
 </section>
   );

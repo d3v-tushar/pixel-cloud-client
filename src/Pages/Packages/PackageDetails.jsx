@@ -9,6 +9,7 @@ const PackageDetails = () => {
     const {img, title, discription, features, price, _id} = details;
     const mainFeatures = features.slice(0, 5);
   return (
+    <PhotoProvider>
     <div>
       <section className="dark:bg-gray-800 dark:text-gray-100">
         <div className="container max-w-xl p-6 py-2 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
@@ -98,6 +99,7 @@ const PackageDetails = () => {
       {/* Review Section */}
      <PackageReview packageId={_id} title={title}></PackageReview>
     </div>
+    </PhotoProvider>
   );
 };
 

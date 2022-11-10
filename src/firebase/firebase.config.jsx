@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD6yHE3RsajbEvHFhkiIbXG6CkV53-Z6fs",
-  authDomain: "pixel-cloud-photography.firebaseapp.com",
-  projectId: "pixel-cloud-photography",
-  storageBucket: "pixel-cloud-photography.appspot.com",
-  messagingSenderId: "816843911052",
-  appId: "1:816843911052:web:70164ca1da3e4a4260f0a9"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

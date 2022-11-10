@@ -6,7 +6,7 @@ import useTitle from "../../CustomHook/useTitle";
 
 const Login = () => {
     useTitle('Login');
-  const { signInExistingUser, signInWithGoogle, signInWithGitHub } =
+  const { signInExistingUser, signInWithGoogle } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const [passwordError, setPasswordError] = useState("");

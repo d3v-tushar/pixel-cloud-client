@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const DisplayReview = ({review}) => {
+    const {message} = review;
+    const displayMessage = message.slice(0, 200);
     const {savedReview, setSavedReview} = useContext(ReviewContext);
     const handleDelete = (review) =>{
             console.log(`Deleting Review With Id: ${review._id}`);
@@ -23,9 +25,11 @@ const DisplayReview = ({review}) => {
             })
     }
     return (
-        <div>
-            <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+        <div className='relative'>
+          <button onClick={() =>handleDelete(review)} className="btn btn-xs btn-square btn-outline w-8 absolute top-1 right-1"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+            <div className="container flex flex-col lg:h-72 max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
           <div className="flex justify-between p-4">
+            
             <div className="flex space-x-4">
               <div>
                 <img
@@ -52,9 +56,8 @@ const DisplayReview = ({review}) => {
           </div>
           <div className="p-4 space-y-2 text-sm dark:text-gray-400">
             <p>
-              {review.message}
+              {displayMessage}...
             </p>
-            <button onClick={() =>handleDelete(review)} className="btn btn-sm btn-primary">Delete</button>
           </div>
           
         </div>

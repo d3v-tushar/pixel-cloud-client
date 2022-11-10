@@ -7,6 +7,7 @@ import logo from "../../assets/logo.png";
 // import Banner from "./Banner";
 import Carosel from "./Carosel";
 import useTitle from "../../CustomHook/useTitle";
+import HomeTeam from "./HomeTeam";
 
 const Home = () => {
   useTitle('Home')
@@ -43,6 +44,7 @@ const Home = () => {
           </section>
           <HomePackages></HomePackages>
           <HomeStats></HomeStats>
+          <HomeTeam></HomeTeam>
         </div>
       </main>
     </div>

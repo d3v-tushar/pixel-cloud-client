@@ -36,6 +36,12 @@ const PackageReview = ({ packageId, title }) => {
             </p>
           </div>
           <div>
+            {
+              savedReview.length === 0 &&
+              <div>
+                <h2 className="text-2xl text-center">No Reviews Were Added</h2>
+              </div>
+            }
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-12 dark:bg-gray-800 dark:text-gray-100">
           {savedReview.map((review, index) => (<DisplayReview key={index} review={review}></DisplayReview>))}
         </section>

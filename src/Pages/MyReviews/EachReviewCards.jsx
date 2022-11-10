@@ -3,6 +3,7 @@ import { BiEdit } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BsPatchCheckFill } from "react-icons/bs";
 
 const EachReviewCards = ({ review, myreview, setMyReview }) => {
   const handleDelete = (review) => {
@@ -39,18 +40,19 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
     .then(res => res.json())
     .then(data =>{
         if(data.modifiedCount > 0){
-            toast('Review Ppdated');
+            toast('Review Updated');
             console.log(data);
             const filterd = myreview.filter(flter => flter._id !== review._id);
             const remaining = myreview.find(flter => flter._id === review._id);
             console.log(remaining);
             form.reset();
-            remaining[message] = message;
-            const currentReview = {...remaining};
-            console.log(currentReview)
-            currentReview.message = message;
-            const newUpdate = [...currentReview, filterd];
-            setMyReview(newUpdate);
+            // remaining[message] = message;
+            // const currentReview = {...remaining};
+            // console.log(currentReview)
+            // currentReview.message = message;
+            // const newUpdate = [...currentReview, filterd];
+            // setMyReview(newUpdate);
+            window.location.reload();
         }
     })
     
@@ -58,7 +60,7 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
 
   return (
     <div>
-      <div className="container flex flex-col w-full max-w-lg h-80 p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+      <div className="container flex flex-col w-full max-w-lg lg:h-96 p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
         <div className="flex justify-between p-4">
           <div className="flex space-x-4">
             <div>
@@ -90,23 +92,30 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
             <span className="text-xl font-bold">{review.rate}</span>
           </div>
         </div>
-        <div className="p-4 space-y-2 text-sm dark:text-gray-400">
-          <h3>
-            <p className="text-md font-semibold"> Package: {review.title}</p>
-            {review.message}
-          </h3>
-        </div>
-        <div className="flex justify-end items-end">
+
+        <div className="w-full ">
+         <div className="grid grid-cols-3">
+         <p className="mt-4 text-md font-semibold col-span-2 flex items-center"><span className="text-blue-600"><BsPatchCheckFill/></span><span className='text-yellow-400 mx-1'> {review.title}</span></p>
+            <div className="flex justify-end items-end btn-group mt-4">
           <button
             onClick={() => handleDelete(review)}
-            className="btn btn-sm m-3 btn-primary"
+            className="btn btn-sm btn-primary"
           >
             <RiDeleteBin5Line />
           </button>
-          <label htmlFor="my-modal-3" className="btn btn-sm m-3 btn-primary">
+          <label htmlFor="my-modal-3" className="btn btn-sm btn-outline">
             <BiEdit></BiEdit>
           </label>
         </div>
+         </div>
+        <div className="divider"></div> 
+        <div className="p-4 space-y-2 text-sm dark:text-gray-400">
+          <h3>
+            {review.message}
+          </h3>
+        </div>
+ 
+      </div>
       </div>
 
       {/* Put this part before </body> tag */}

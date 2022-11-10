@@ -101,7 +101,7 @@ const AddService = () => {
                   name="img"
                   id="lastname"
                   type="text"
-                  placeholder="Image Url"
+                  placeholder="600 x 400"
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-cyan-400 dark:border-gray-700 text-white"
                 />
               </div>

@@ -21,8 +21,7 @@ const Gallary = () => {
                 Workshop On Drone Videography/ Cinematography
               </h3>
               <p className="my-6 dark:text-gray-400">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
-                aliquam possimus quas, error esse quos.
+              Creating a timeless look, coupled with a flawless moment. A photograph should<span>n't</span> just be a picture; it should be philosophy.
               </p>
               <button type="button" className="self-start">
                 Learn More

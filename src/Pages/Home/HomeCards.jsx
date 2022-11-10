@@ -17,11 +17,11 @@ const HomeCards = ({ data }) => {
        </PhotoView>
         <div className="flex flex-col justify-between p-3 px-auto space-y-8">
           <div className="space-y-2">
-            <div>
-              <h2 className="text-4xl my-4 font-semibold tracking-wide">
+          <div className="flex justify-between">
+              <h2 className="text-4xl ml-2 my-4 font-semibold tracking-wide flex items-center">
                 {title}
               </h2>
-              <h4 className="text-xl mb-4 ">${price}</h4>
+              <h4 className="text-3xl p-2 dark:bg-gray-500 rounded-3xl my-2 font-bold mr-2 text-yellow-400">${price}</h4>
             </div>
             <ul className="flex-1 space-y-2">
               {features.map((feature, index) => (
