@@ -9,6 +9,8 @@ import Signup from '../Pages/Signup/Signup';
 import PrivateRoute from './PrivateRoute';
 import NotFound from '../Pages/NotFound/NotFound';
 import PackageDetails from '../Pages/Packages/PackageDetails';
+import MyReviews from '../Pages/MyReviews/MyReviews';
+import AddService from '../Pages/AddService/AddService';
 
 
 const Routes = createBrowserRouter([
@@ -27,12 +29,16 @@ const Routes = createBrowserRouter([
             {
                 path: '/packages',
                 element: <Packages></Packages>,
-                loader: () => fetch('http://localhost:5000/packages')
+                loader: () => fetch('https://pixel-cloud-server.vercel.app/packages')
             },
             {
                 path: 'packages/:id',
                 element: <PackageDetails></PackageDetails>,
-                loader: async({params}) => fetch(`http://localhost:5000/packages/${params.id}`)
+                loader: async({params}) => fetch(`https://pixel-cloud-server.vercel.app/packages/${params.id}`)
+            },
+            {
+                path: '/myreviews',
+                element: <MyReviews></MyReviews>
             },
             {
                 path: '/login',
@@ -41,6 +47,10 @@ const Routes = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup></Signup>
+            },
+            {
+                path: 'addservice',
+                element: <PrivateRoute><AddService></AddService></PrivateRoute>
             },
             {
                 path: '/blog',

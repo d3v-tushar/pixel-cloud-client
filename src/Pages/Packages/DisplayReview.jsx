@@ -3,11 +3,12 @@ import { ReviewContext } from './PackageReview';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const DisplayReview = ({review}) => {
     const {savedReview, setSavedReview} = useContext(ReviewContext);
     const handleDelete = (review) =>{
-            console.log(`Deleting User With Id: ${review._id}`);
-        fetch(`http://localhost:5000/reviews/${review._id}`, {
+            console.log(`Deleting Review With Id: ${review._id}`);
+        fetch(`https://pixel-cloud-server.vercel.app/reviews/${review._id}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())
@@ -34,7 +35,7 @@ const DisplayReview = ({review}) => {
               </div>
               <div>
                 <h4 className="font-bold">{review.name}</h4>
-                <span className="text-xs dark:text-gray-400">{review.date} | {review.time}</span>
+                <span className="text-xs dark:text-gray-400">{review.localTime}</span>
               </div>
             </div>
             <div className="flex items-center space-x-2 dark:text-yellow-500">

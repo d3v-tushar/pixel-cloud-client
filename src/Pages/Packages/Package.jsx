@@ -1,16 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const Package = ({ eachpackage }) => {
   const { features, price, img, title, _id } = eachpackage;
   return (
-    <div>
+    <PhotoProvider>
+        <div>
       <div className="max-w-md rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
+        <PhotoView src={img}>
         <img
           src={img}
           alt=""
           className="object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
         />
+        </PhotoView>
         <div className="flex flex-col justify-between p-3 px-auto space-y-8">
           <div className="space-y-2">
             <div>
@@ -50,6 +55,7 @@ const Package = ({ eachpackage }) => {
         </div>
       </div>
     </div>
+    </PhotoProvider>
   );
 };
 

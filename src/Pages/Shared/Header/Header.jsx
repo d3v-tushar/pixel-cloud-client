@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
-import Logo from '../../../assets/logo.png';
 import { AuthContext } from "../../../Context/AuthProvider";
 
 const Header = () => {
@@ -20,28 +19,33 @@ const Header = () => {
         <div className="container flex justify-between h-16 mx-auto md:justify-center md:space-x-8">
           <ul className="items-stretch hidden space-x-3 md:flex">
             <li className="flex">
-              <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/home'>Home</NavLink>
-            </li>
-            <li className="flex">
             <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/packages'>Packages</NavLink>
             </li>
             <li className="flex">
             <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/gallary'>Gallary</NavLink>
             </li>
+            {
+              user?.uid && <li className="flex">
+              <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/myreviews'>My Reviews</NavLink>
+              </li>
+            }
           </ul>
-          <a
+          {/* <Link
             rel="noopener noreferrer"
             href="#"
             aria-label="Back to homepage"
             className="flex items-center p-2"
-          >
-            <h2 className="text-xl font-bold">Pixel Cloud</h2>
+          > */}
+            <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/home'><h2 className="text-xl font-bold">Pixel Cloud</h2></NavLink>
+            
             {/* <img className="h-20" src={Logo} alt="" /> */}
-          </a>
+          {/* </Link> */}
           <ul className="items-stretch hidden space-x-3 md:flex">
-            <li className="flex">
-            <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/reviews'>Reviews</NavLink>
-            </li>
+            {
+              user?.uid && <li className="flex">
+              <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/addservice'>Add Service</NavLink>
+              </li>
+            }
             <li className="flex">
             <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/blog'>Blog</NavLink>
             </li>

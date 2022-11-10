@@ -1,6 +1,8 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import PackageReview from "./PackageReview";
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const PackageDetails = () => {
     const details = useLoaderData();
@@ -80,11 +82,13 @@ const PackageDetails = () => {
                 </div>
               </div>
               <div className="mt-10 lg:mt-0 lg:col-start-1 lg:row-start-1">
+                <PhotoView src={img}>
                 <img
                   src={img}
                   alt=""
                   className="mx-auto rounded-lg shadow-lg dark:bg-gray-500"
                 />
+                </PhotoView>
               </div>
             </div>
           </div>
@@ -92,7 +96,7 @@ const PackageDetails = () => {
       </section>
 
       {/* Review Section */}
-     <PackageReview packageId={_id}></PackageReview>
+     <PackageReview packageId={_id} title={title}></PackageReview>
     </div>
   );
 };

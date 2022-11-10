@@ -1,16 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import AddReview from "./AddReview";
 import DisplayReview from "./DisplayReview";
 
 export const ReviewContext = createContext();
-const PackageReview = ({ packageId }) => {
+const PackageReview = ({ packageId, title }) => {
   const { user } = useContext(AuthContext);
-  const { _id } = user;
   const [savedReview, setSavedReview] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?packageId=${_id}`)
+    fetch(`https://pixel-cloud-server.vercel.app/reviews?packageId=${packageId}`)
       .then((res) => res.json())
       .then((data) => setSavedReview(data));
   }, [packageId]);
@@ -23,13 +21,6 @@ const PackageReview = ({ packageId }) => {
 
   return (
     <ReviewContext.Provider value={reviewinfo}>
-      {/* <div>
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-12 dark:bg-gray-800 dark:text-gray-100">
-          {savedReview.map((review, index) => (<DisplayReview key={index} review={review}></DisplayReview>))}
-        </section>
-
-        <AddReview packageId={packageId}></AddReview>
-      </div> */}
     <div className="flex flex-col w-full border-opacity-50">
     <div className="mt-5 divider">PIXEL CLOUD</div>
     </div>
@@ -49,7 +40,7 @@ const PackageReview = ({ packageId }) => {
           {savedReview.map((review, index) => (<DisplayReview key={index} review={review}></DisplayReview>))}
         </section>
 
-        <AddReview packageId={packageId}></AddReview>
+        <AddReview packageId={packageId} title={title}></AddReview>
       </div>
         </div>
       </section>

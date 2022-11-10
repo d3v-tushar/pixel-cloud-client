@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from '../../Context/AuthProvider';
 import { ReviewContext } from './PackageReview';
 
-const AddReview = ({packageId}) => {
+const AddReview = ({packageId, title}) => {
     const {user} = useContext(AuthContext);
     const [rating, setRating] = useState(1);
     const {savedReview, setSavedReview} = useContext(ReviewContext);
@@ -16,14 +16,13 @@ const AddReview = ({packageId}) => {
         const message = form.message.value;
         const rate = rating;
         const name = user.displayName;
+        const email = user.email;
         const picture = user.photoURL;
-        let time = new Date().toLocaleTimeString();
-        let date = new Date().toLocaleDateString();
-        const localTime = new Date().toLocaleString()
-        // console.log(message,time, date, rate, name, picture, packageId);
-        const review = {packageId, name, picture, time, date, message, rate, localTime}
+        const localTime = new Date().toLocaleString();
+       console.log(title);
+        const review = {packageId, title, name, email, picture, message, rate, localTime};
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://pixel-cloud-server.vercel.app/reviews', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
@@ -45,8 +44,8 @@ const AddReview = ({packageId}) => {
         <>
         <div className="grid justify-center my-4">
         {
-          user?.uid ? <label htmlFor="my-modal-3" className="btn glass btn-wide">Add Review</label> :
-          <Link to='/login' state={{from : location}} replace><button className="btn glass btn-wide">Login To Add Review</button></Link>
+          user?.uid ? <label htmlFor="my-modal-3" className="btn btn-wide">Add Review</label> :
+          <Link to='/login' state={{from : location}} replace><button className="btn btn-primary btn-wide">Login To Add Review</button></Link>
         }
         </div>
   
