@@ -5,17 +5,19 @@ import EachReviewCards from "./EachReviewCards";
 
 const MyReviews = () => {
   useTitle("My Reviews");
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  if(loading)
+  console.log(user?.email);
   const [myreview, setMyReview] = useState([]);
   myreview.sort(function(x,y){
     return y.localTime.localeCompare(x.localTime);
   });
 
   useEffect(() => {
-    fetch(`https://pixel-cloud-server.vercel.app/reviews?email=${user.email}`)
+    fetch(`http://localhost:5000/myreviews?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyReview(data));
-  }, [user]);
+  }, [user?.email]);
 
   return (
     <div>

@@ -8,7 +8,7 @@ const PackageReview = ({ packageId, title }) => {
   const { user } = useContext(AuthContext);
   const [savedReview, setSavedReview] = useState([]);
   useEffect(() => {
-    fetch(`https://pixel-cloud-server.vercel.app/reviews?packageId=${packageId}`)
+    fetch(`http://localhost:5000/reviews?packageId=${packageId}`)
       .then((res) => res.json())
       .then((data) => setSavedReview(data));
   }, [packageId]);
