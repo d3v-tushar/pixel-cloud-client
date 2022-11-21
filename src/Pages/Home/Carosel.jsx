@@ -1,26 +1,25 @@
-import React from 'react';
-import image1 from '../../assets/slider/s1.png';
-import image2 from '../../assets/slider/s2.png';
-import image3 from '../../assets/slider/s3.png';
-import image4 from '../../assets/slider/s4.png';
+import React from "react";
+import logo from './../../assets/logo.png';
 
-const Carosel = () => {
-    return (
-        <div className="carousel w-full rounded-md xl:col-span-3">
-        <div className="carousel-item w-full">
-            <img src={image1} className="w-full" />
-        </div> 
-        <div className="carousel-item w-full">
-            <img src={image2} className="w-full" />
-        </div> 
-        <div className="carousel-item w-full">
-            <img src={image3} className="w-full" />
-        </div> 
-        <div className="carousel-item w-full">
-            <img src={image4} className="w-full" />
-        </div> 
+const Carosel = ({slide}) => {
+    const {image, id, prev, next} = slide;
+  return (
+    <div id={`slide${id}`} className="carousel-item relative w-full">
+        <div className='carousel-img'>
+        <img src={image} alt='' className="rounded-xl" />
         </div>
-    );
+            <div className=" grid justify-center align-middle w-72 items-center">
+               <div>
+               <img src={logo} alt="" />
+               </div>
+            </div>
+            <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-5 bottom-0">
+            <a href={`#slide${prev}`} className="btn btn-circle mr-5">❮</a> 
+            <a href={`#slide${next}`} className="btn btn-circle">❯</a>
+            </div>
+        </div> 
+    
+  );
 };
 
 export default Carosel;

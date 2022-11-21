@@ -35,6 +35,7 @@ const AuthProvider = ({children}) => {
 
     //Google Sign In
     const signInWithGoogle = () =>{
+        setLoading(false);
         return signInWithPopup(auth, googleProvider);
     };
 
@@ -49,6 +50,7 @@ const AuthProvider = ({children}) => {
 
     //LogOut User
     const logOut = () =>{
+        localStorage.removeItem('auth-token');
         return signOut(auth);
     };
 

@@ -103,8 +103,8 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
           >
             <RiDeleteBin5Line />
           </button>
-          <label htmlFor="my-modal-3" className="btn btn-sm btn-outline">
-            <BiEdit></BiEdit>
+          <label htmlFor="my-modal-3" className="btn btn-sm btn-accent">
+            <BiEdit/>
           </label>
         </div>
          </div>

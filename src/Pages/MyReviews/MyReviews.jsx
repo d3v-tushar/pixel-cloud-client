@@ -5,19 +5,28 @@ import EachReviewCards from "./EachReviewCards";
 
 const MyReviews = () => {
   useTitle("My Reviews");
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, logOut } = useContext(AuthContext);
   if(loading)
-  console.log(user?.email);
+  console.log(user);
   const [myreview, setMyReview] = useState([]);
   myreview.sort(function(x,y){
     return y.localTime.localeCompare(x.localTime);
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myreviews?email=${user?.email}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/myreviews?email=${user?.email}`,{
+      headers: {
+        authorization : `Bearer ${localStorage.getItem('auth-token')}`
+      }
+    })
+      .then((res) =>{
+        if(res.status === 401 || res.status === 403){
+          logOut();
+        }
+        return res.json()
+      })
       .then((data) => setMyReview(data));
-  }, [user?.email]);
+  }, [user?.email, logOut]);
 
   return (
     <div>

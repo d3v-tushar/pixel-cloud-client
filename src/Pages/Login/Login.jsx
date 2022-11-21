@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import useTitle from "../../CustomHook/useTitle";
+import { setJsonToken } from "../../Utlities/AuthToken";
 
 const Login = () => {
     useTitle('Login');
@@ -42,6 +43,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setJsonToken(user);
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -56,6 +58,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setJsonToken(user);
         navigate(from, { replace: true });
       })
       .catch((error) => console.error(error.message));

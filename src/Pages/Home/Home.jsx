@@ -1,22 +1,49 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import HomePackages from "./HomePackages";
 import HomeStats from "./HomeStats";
-import logo from "../../assets/logo.png";
+import image1 from "../../assets/slider/s1.png";
+import image2 from "../../assets/slider/s2.png";
+import image3 from "../../assets/slider/s3.png";
+import image4 from "../../assets/slider/s4.png";
 
-// import Banner from "./Banner";
 import Carosel from "./Carosel";
 import useTitle from "../../CustomHook/useTitle";
 import HomeTeam from "./HomeTeam";
 
 const Home = () => {
-  useTitle('Home')
+  useTitle('Home');
+  const sliderData = [
+    {
+      image: image1,
+      prev: 4,
+      id: 1,
+      next: 2
+  },
+  {
+      image: image2,
+      prev: 1,
+      id: 2,
+      next: 3
+  },
+  {
+      image: image3,
+      prev: 2,
+      id: 3,
+      next: 4
+  },
+  {
+      image: image4,
+      prev: 3,
+      id: 4,
+      next: 1
+  }
+];
   return (
     <div className="min-h-screen dark:bg-gray-800 dark:text-gray-100">
       <main>
         <div className="container mx-auto space-y-16">
-          <section className="grid gap-6 text-center lg:grid-cols-2 xl:grid-cols-6">
-            <div className="w-full p-6 rounded-md sm:p-16 xl:col-span-2 dark:bg-gray-900">
+          <section className="">
+            {/* <div className="w-full p-6 rounded-md sm:p-16 xl:col-span-2 dark:bg-gray-900">
               <span className="block mb-2 dark:text-violet-400">
                 Pixel Cloud Photography
               </span>
@@ -37,9 +64,13 @@ const Home = () => {
                   Explore Gallary
                 </button>
               </form>
-            </div>
-            <div className="w-full rounded-md xl:col-span-4">
-              <Carosel></Carosel>
+            </div> */}
+            <div className="carousel w-full py-10">
+              {
+                sliderData.map(slide => <Carosel 
+                  key={slide.id}
+                  slide={slide}></Carosel>)
+              }
             </div>
           </section>
           <HomePackages></HomePackages>

@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import useTitle from "../../CustomHook/useTitle";
+import { setJsonToken } from "../../Utlities/AuthToken";
 
 const Signup = () => {
   useTitle('Register')
@@ -49,6 +50,7 @@ const Signup = () => {
         updateProfile(name, photo);
         form.reset();
         setSuccess(true);
+        setJsonToken(user);
         navigate("/home");
       })
       .catch((error) => {
