@@ -8,7 +8,7 @@ import { BsPatchCheckFill } from "react-icons/bs";
 const EachReviewCards = ({ review, myreview, setMyReview }) => {
   const handleDelete = (review) => {
     console.log(`Deleting Review With Id: ${review._id}`);
-    fetch(`http://localhost:5000/reviews/${review._id}`, {
+    fetch(`https://pixel-cloud-server.vercel.app/reviews/${review._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -30,7 +30,7 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
     const form = e.target;
     const updateMessage = e.target.message.value;
     const message = {message: updateMessage};
-    fetch(`http://localhost:5000/reviews/${review._id}`, {
+    fetch(`https://pixel-cloud-server.vercel.app/reviews/${review._id}`, {
         method: "PUT",
         headers: {
             "content-type": "application/json"

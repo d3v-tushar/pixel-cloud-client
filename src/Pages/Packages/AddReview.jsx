@@ -22,7 +22,7 @@ const AddReview = ({packageId, title}) => {
        console.log(title);
         const review = {packageId, title, name, email, picture, message, rate, localTime};
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://pixel-cloud-server.vercel.app/reviews', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

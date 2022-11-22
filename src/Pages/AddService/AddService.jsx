@@ -5,8 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 import useTitle from '../../CustomHook/useTitle';
 
 const AddService = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   useTitle('Add Service');
+  if(loading){
+    return <div className="min-h-screen grid justify-center ">
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-sky-400"></div>
+    </div>
+  };
+
   const handleAddPackage = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -45,7 +51,7 @@ const AddService = () => {
     };
     console.log(newPackage);
 
-    fetch("http://localhost:5000/packages", {
+    fetch("https://pixel-cloud-server.vercel.app/packages", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -7,8 +7,10 @@ const MyReviews = () => {
   useTitle("My Reviews");
   const { user, loading, logOut } = useContext(AuthContext);
   if(loading){
-    return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-cyan-400"></div>
-  }
+    return <div className="min-h-screen grid justify-center ">
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-sky-400"></div>
+    </div>
+  };
   const [myreview, setMyReview] = useState([]);
   console.log(myreview);
   myreview.sort(function(x,y){
@@ -16,7 +18,7 @@ const MyReviews = () => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myreviews?email=${user?.email}`,{
+    fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
       headers: {
         authorization : `Bearer ${localStorage.getItem('auth-token')}`
       }
