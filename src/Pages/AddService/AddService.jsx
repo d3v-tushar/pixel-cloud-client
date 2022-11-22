@@ -45,7 +45,7 @@ const AddService = () => {
     };
     console.log(newPackage);
 
-    fetch("https://pixel-cloud-server.vercel.app/packages", {
+    fetch("http://localhost:5000/packages", {
       method: "POST",
       headers: {
         "content-type": "application/json",

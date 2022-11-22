@@ -25,7 +25,7 @@ const Package = ({ eachpackage }) => {
               <h4 className="text-3xl p-2 dark:bg-gray-500 rounded-3xl my-2 font-bold mr-2 text-yellow-400">${price}</h4>
             </div>
             <ul className="flex-1 space-y-2">
-              {features.map((feature, index) => (
+              {features?.map((feature, index) => (
                 <li key={index} className="flex items-center space-x-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -5,7 +5,7 @@ import HomeCards from "./HomeCards";
 const HomePackages = () => {
 	const [pack, setPack] = useState([]); 
 	useEffect(() =>{
-		fetch('https://pixel-cloud-server.vercel.app/packages/home')
+		fetch('http://localhost:5000/packages/home')
 		.then(res => res.json())
 		.then(data => setPack(data))
 	}, [])

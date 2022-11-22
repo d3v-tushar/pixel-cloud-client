@@ -17,7 +17,7 @@ const Packages = () => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-stretch -mx-4">
           {
-            packages.map((eachpackage, index) => <Package key={index} eachpackage={eachpackage}></Package>)
+            packages?.map((eachpackage, index) => <Package key={index} eachpackage={eachpackage}></Package>)
            }
           </div>
         </div>

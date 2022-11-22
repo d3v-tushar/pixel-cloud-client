@@ -11,7 +11,7 @@ const DisplayReview = ({review}) => {
     const {savedReview, setSavedReview} = useContext(ReviewContext);
     const handleDelete = (review) =>{
             console.log(`Deleting Review With Id: ${review._id}`);
-        fetch(`https://pixel-cloud-server.vercel.app/reviews/${review._id}`, {
+        fetch(`http://localhost:5000/reviews/${review._id}`, {
                 method: 'DELETE'
             })
             .then(res => res.json())

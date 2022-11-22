@@ -6,9 +6,11 @@ import EachReviewCards from "./EachReviewCards";
 const MyReviews = () => {
   useTitle("My Reviews");
   const { user, loading, logOut } = useContext(AuthContext);
-  if(loading)
-  console.log(user);
+  if(loading){
+    return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-cyan-400"></div>
+  }
   const [myreview, setMyReview] = useState([]);
+  console.log(myreview);
   myreview.sort(function(x,y){
     return y.localTime.localeCompare(x.localTime);
   });

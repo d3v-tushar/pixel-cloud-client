@@ -30,12 +30,12 @@ const Routes = createBrowserRouter([
             {
                 path: '/packages',
                 element: <Packages></Packages>,
-                loader: () => fetch('https://pixel-cloud-server.vercel.app/packages')
+                loader: () => fetch('http://localhost:5000/packages')
             },
             {
                 path: 'packages/:id',
                 element: <PackageDetails></PackageDetails>,
-                loader: async({params}) => fetch(`https://pixel-cloud-server.vercel.app/packages/${params.id}`)
+                loader: async({params}) => fetch(`http://localhost:5000/packages/${params.id}`)
             },
             {
                 path: '/myreviews',
