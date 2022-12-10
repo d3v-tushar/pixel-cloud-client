@@ -65,7 +65,7 @@ const Home = () => {
                 </button>
               </form>
             </div> */}
-            <div className="carousel w-full py-10">
+            <div className="carousel w-min-screen">
               {
                 sliderData.map(slide => <Carosel 
                   key={slide.id}

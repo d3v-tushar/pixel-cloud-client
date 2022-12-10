@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import useTitle from "../../CustomHook/useTitle";
 import EachReviewCards from "./EachReviewCards";
 
 const MyReviews = () => {
   useTitle("My Reviews");
+  const navigate = useNavigate();
   const { user, loading, logOut } = useContext(AuthContext);
   if(loading){
     return <div className="min-h-screen grid justify-center ">
@@ -13,10 +15,11 @@ const MyReviews = () => {
   };
   const [myreview, setMyReview] = useState([]);
   console.log(myreview);
+ if(myreview.length > 0){
   myreview.sort(function(x,y){
     return y.localTime.localeCompare(x.localTime);
   });
-
+ };
   useEffect(() => {
     fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
       headers: {
@@ -26,7 +29,8 @@ const MyReviews = () => {
       .then((res) =>{
         if(res.status === 401 || res.status === 403){
           logOut();
-        }
+          navigate('/login');
+        };
         return res.json()
       })
       .then((data) => setMyReview(data));

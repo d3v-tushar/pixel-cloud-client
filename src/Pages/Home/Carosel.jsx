@@ -5,11 +5,11 @@ const Carosel = ({slide}) => {
     const {image, id, prev, next} = slide;
   return (
     <div id={`slide${id}`} className="carousel-item relative w-full">
-        <div className='carousel-img'>
-        <img src={image} alt='' className="rounded-xl" />
+        <div className='carousel-img w-full'>
+        <img src={image} alt='' className="rounded-xl min-w-screen" />
         </div>
             <div className=" grid justify-center align-middle w-72 items-center">
-               <div>
+               <div className="absolute">
                <img src={logo} alt="" />
                </div>
             </div>

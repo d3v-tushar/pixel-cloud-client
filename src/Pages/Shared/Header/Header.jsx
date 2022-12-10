@@ -30,12 +30,6 @@ const Header = () => {
               </li>
             }
           </ul>
-          {/* <Link
-            rel="noopener noreferrer"
-            href="#"
-            aria-label="Back to homepage"
-            className="flex items-center p-2"
-          > */}
             <NavLink className={({isActive}) => isActive ? active : linkCSS} to='/home'><h2 className="text-xl font-bold">Pixel Cloud</h2></NavLink>
             
             {/* <img className="h-20" src={Logo} alt="" /> */}
