@@ -25,7 +25,7 @@ const PackageReview = ({ packageId, title }) => {
     <div className="mt-5 divider">PIXEL CLOUD</div>
     </div>
 
-      <section className="dark:bg-gray-800 dark:text-gray-100 mt-8">
+      <section className="dark:bg-gray-900 dark:text-gray-100 mt-8">
         <div className="container max-w-xl p-6 py-2 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl dark:text-gray-50">
@@ -42,7 +42,7 @@ const PackageReview = ({ packageId, title }) => {
                 <h2 className="text-2xl text-center">No Reviews Were Added</h2>
               </div>
             }
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-12 dark:bg-gray-800 dark:text-gray-100">
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-12 dark:bg-gray-900 dark:text-gray-100">
           {savedReview.map((review, index) => (<DisplayReview key={index} review={review}></DisplayReview>))}
         </section>
 

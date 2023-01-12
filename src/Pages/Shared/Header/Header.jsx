@@ -48,7 +48,7 @@ const Header = ({darkMode, setDarkMode}) => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow text-gray-900 bg-white dark:bg-base-900 dark:text-white"
           >
             <li className="flex">
               <NavLink

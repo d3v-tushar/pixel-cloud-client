@@ -6,7 +6,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 const Package = ({ eachpackage }) => {
   const { features, price, img, title, _id } = eachpackage;
   return (
-    <div className="relative block overflow-hidden group mx-5  dark:text-white text-gray-900">
+    <div className="relative block overflow-hidden group mx-5  dark:text-white border text-gray-900">
       <button className="absolute right-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
         <span className="sr-only">Wishlist</span>
 
@@ -32,7 +32,7 @@ const Package = ({ eachpackage }) => {
         className="object-cover w-full h-64 transition duration-500 group-hover:scale-105 sm:h-72"
       />
 
-      <div className="relative p-6 bg-white dark:bg-gray-700 border border-gray-100">
+      <div className="relative p-6 bg-white dark:bg-gray-700 border-gray-100">
         <h3 className="mt-4 text-2xl font-medium  dark:text-white text-gray-900">
           {title}
         </h3>

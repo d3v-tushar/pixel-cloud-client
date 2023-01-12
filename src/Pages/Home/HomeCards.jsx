@@ -6,7 +6,7 @@ import "react-photo-view/dist/react-photo-view.css";
 const HomeCards = ({ data }) => {
   const { features, price, img, title, _id } = data;
   return (
-    <div className="relative block overflow-hidden group mx-5  dark:text-white text-gray-900">
+    <div className="relative block overflow-hidden group mx-5  dark:text-white text-gray-900 border">
       <button className="absolute right-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
         <span className="sr-only">Wishlist</span>
 
@@ -32,7 +32,7 @@ const HomeCards = ({ data }) => {
         className="object-cover w-full h-64 transition duration-500 group-hover:scale-105 sm:h-72"
       />
 
-      <div className="relative p-6 bg-white dark:bg-gray-700 border border-gray-100">
+      <div className="relative p-6 bg-white dark:bg-gray-700 border-gray-100">
         <h3 className="mt-4 text-2xl font-medium  dark:text-white text-gray-900">
           {title}
         </h3>
@@ -62,7 +62,7 @@ const HomeCards = ({ data }) => {
         </ul>
 
         <Link className="mt-4" to={`/packages/${_id}`}>
-          <button className="block w-full p-4 text-sm text-gray-700 transition bg-yellow-400 rounded font-semibold hover:scale-105">
+          <button className="block w-full p-4 text-sm text-gray-100 transition bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded font-semibold hover:scale-105">
             Learn More
           </button>
         </Link>

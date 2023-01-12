@@ -35,7 +35,7 @@ const HomePackages = () => {
         <Link to="/packages">
           <button
             type="button"
-            className="btn-info px-10 py-3 font-semibold rounded-full text-xl dark:bg-gray-100 dark:text-gray-800"
+            className="inline-block px-10 py-4 font-bold text-xl rounded-full hover:bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:text-white outline focus:ring active:text-opacity-75"
           >
             See All
           </button>

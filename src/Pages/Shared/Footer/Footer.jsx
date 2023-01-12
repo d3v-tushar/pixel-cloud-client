@@ -3,7 +3,8 @@ import logo from '../../../assets/logo.png';
 
 const Footer = () => {
   return (
-    <footer aria-label="Site Footer" className="bg-gray-100 dark:bg-gray-900">
+    <footer aria-label="Site Footer" className=" dark:bg-gray-900">
+      <hr />
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex justify-center text-teal-600">
           {/* <svg

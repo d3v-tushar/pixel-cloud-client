@@ -11,7 +11,7 @@ const PackageDetails = () => {
   return (
     <PhotoProvider>
     <div>
-      <section className="dark:bg-gray-800 dark:text-gray-100">
+      <section className="dark:bg-gray-900 dark:text-gray-100">
         <div className="container max-w-xl p-6 py-2 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl dark:text-gray-50">

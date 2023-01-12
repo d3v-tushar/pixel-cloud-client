@@ -60,7 +60,7 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
 
   return (
     <div>
-      <div className="container flex flex-col w-full max-w-lg lg:h-96 p-6 mx-auto divide-y rounded-md divide-gray-700 bg-gray-300 dark:bg-gray-900 dark:text-gray-100">
+      <div className="container flex flex-col w-full max-w-lg lg:h-96 p-6 mx-auto divide-y rounded-md divide-gray-700 bg-gray-900 dark:glass dark:text-white">
         <div className="flex justify-between p-4">
           <div className="flex space-x-4">
             <div>
@@ -75,13 +75,13 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
               />
             </div>
             <div>
-              <h4 className="font-bold">{review.name}</h4>
-              <span className="text-xs dark:text-gray-400">
+              <h4 className="font-bold text-white">{review.name}</h4>
+              <span className="text-xs text-gray-100 dark:text-gray-100">
                 {review.localTime}
               </span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 dark:text-yellow-500">
+          <div className="flex items-center space-x-2 text-yellow-500 dark:text-yellow-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -109,7 +109,7 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
         </div>
          </div>
         <div className="divider"></div> 
-        <div className="p-4 space-y-2 text-sm dark:text-gray-400">
+        <div className="p-4 space-y-2 text-sm text-gray-100 dark:text-gray-100">
           <h3>
             {review.message}
           </h3>

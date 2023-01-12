@@ -12,10 +12,12 @@ const MyReviews = () => {
     </div>
   };
   const [myreview, setMyReview] = useState([]);
-  console.log(myreview);
-  myreview.sort(function(x,y){
-    return y.localTime.localeCompare(x.localTime);
-  });
+  //console.log(myreview);
+  if(myreview.length > 0){
+    myreview.sort(function(x,y){
+      return y.localTime.localeCompare(x.localTime);
+    });
+  };
 
   useEffect(() => {
     fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
@@ -34,8 +36,8 @@ const MyReviews = () => {
 
   return (
     <div>
-      <section className="min-h-screen dark:bg-gray-800 dark:text-gray-100 w-full">
-        <div className="container max-w-xl lg:p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
+      <section className="min-h-screen dark:bg-gray-900 dark:text-gray-100 w-full">
+        <div className="container dark:bg-gray-900 dark:text-gray-100 max-w-xl lg:p-6 py-12 mx-auto space-y-24 lg:px-8 lg:max-w-7xl">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-center sm:text-5xl dark:text-gray-50">
               My Reviews: {myreview.length}
