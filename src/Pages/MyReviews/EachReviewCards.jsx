@@ -60,7 +60,7 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
 
   return (
     <div>
-      <div className="container flex flex-col w-full max-w-lg lg:h-96 p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+      <div className="container flex flex-col w-full max-w-lg lg:h-96 p-6 mx-auto divide-y rounded-md divide-gray-700 bg-gray-300 dark:bg-gray-900 dark:text-gray-100">
         <div className="flex justify-between p-4">
           <div className="flex space-x-4">
             <div>

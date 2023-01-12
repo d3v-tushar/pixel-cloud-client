@@ -9,6 +9,7 @@ import image4 from "../../assets/slider/s4.png";
 import Carosel from "./Carosel";
 import useTitle from "../../CustomHook/useTitle";
 import HomeTeam from "./HomeTeam";
+import Slider from "./Slider";
 
 const Home = () => {
   useTitle('Home');
@@ -39,7 +40,7 @@ const Home = () => {
   }
 ];
   return (
-    <div className="min-h-screen dark:bg-gray-800 dark:text-gray-100">
+    <div className="min-h-screen dark:bg-gray-900 dark:text-gray-100">
       <main>
         <div className="container mx-auto space-y-16">
           <section className="">
@@ -65,16 +66,17 @@ const Home = () => {
                 </button>
               </form>
             </div> */}
-            <div className="carousel w-min-screen">
+            {/* <div className="carousel w-full py-10">
               {
                 sliderData.map(slide => <Carosel 
                   key={slide.id}
                   slide={slide}></Carosel>)
               }
-            </div>
+            </div> */}
+            <Slider></Slider>
           </section>
           <HomePackages></HomePackages>
-          <HomeStats></HomeStats>
+          {/* <HomeStats></HomeStats> */}
           <HomeTeam></HomeTeam>
         </div>
       </main>
