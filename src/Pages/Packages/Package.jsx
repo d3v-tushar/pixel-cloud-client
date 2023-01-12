@@ -62,7 +62,7 @@ const Package = ({ eachpackage }) => {
         </ul>
 
         <Link className="mt-4" to={`/packages/${_id}`}>
-          <button className="block w-full p-4 text-sm text-gray-700 transition bg-yellow-400 rounded font-semibold hover:scale-105">
+          <button className="block w-full p-4 text-sm text-gray-100 transition bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded font-semibold hover:scale-105">
             Learn More
           </button>
         </Link>
