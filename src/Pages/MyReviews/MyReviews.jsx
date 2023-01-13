@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import useTitle from "../../CustomHook/useTitle";
@@ -5,7 +6,7 @@ import EachReviewCards from "./EachReviewCards";
 
 const MyReviews = () => {
   useTitle("My Reviews");
-  const { user, loading, logOut } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   if(loading){
     return <div className="min-h-screen grid justify-center ">
       <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-sky-400"></div>
@@ -19,20 +20,33 @@ const MyReviews = () => {
     });
   };
 
-  useEffect(() => {
-    fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
-      headers: {
-        authorization : `Bearer ${localStorage.getItem('auth-token')}`
-      }
-    })
-      .then((res) =>{
-        if(res.status === 401 || res.status === 403){
-          logOut();
-        }
-        return res.json()
-      })
-      .then((data) => setMyReview(data));
-  }, [user?.email, logOut]);
+  // useEffect(() => {
+  //   fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
+  //     headers: {
+  //       authorization : `Bearer ${localStorage.getItem('auth-token')}`
+  //     }
+  //   })
+  //     .then((res) =>{
+  //       if(res.status === 401 || res.status === 403){
+  //         logOut();
+  //       }
+  //       return res.json()
+  //     })
+  //     .then((data) => setMyReview(data));
+  // }, [user?.email, logOut]);
+
+  const { data, isloading} = useQuery({
+    queryKey: ['myReviews'], 
+    queryFn: () => fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`, {
+      headers: { authorization: `Bearer ${localStorage.getItem('auth-token')}`
+    }})
+    .then(res => res.json())
+    .then(data => console.log(data))
+  });
+
+  if(isloading && loading){
+    return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+  }
 
   return (
     <div>
@@ -61,7 +75,7 @@ const MyReviews = () => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
            
-            {myreview.map((review, index) => (
+            {myreview.length > 0 && myreview.map((review, index) => (
               <EachReviewCards
                 key={index}
                 review={review}
