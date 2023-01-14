@@ -7,18 +7,18 @@ import EachReviewCards from "./EachReviewCards";
 const MyReviews = () => {
   useTitle("My Reviews");
   const { user, loading } = useContext(AuthContext);
-  if(loading){
-    return <div className="min-h-screen grid justify-center ">
-      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-sky-400"></div>
-    </div>
-  };
-  const [myreview, setMyReview] = useState([]);
+  // if(loading){
+  //   return <div className="min-h-screen grid justify-center ">
+  //     <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-sky-400"></div>
+  //   </div>
+  // };
+  // const [myreview, setMyReview] = useState([]);
   //console.log(myreview);
-  if(myreview.length > 0){
-    myreview.sort(function(x,y){
-      return y.localTime.localeCompare(x.localTime);
-    });
-  };
+  // if(myreview.length > 0){
+  //   myreview.sort(function(x,y){
+  //     return y.localTime.localeCompare(x.localTime);
+  //   });
+  // };
 
   // useEffect(() => {
   //   fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
@@ -35,18 +35,26 @@ const MyReviews = () => {
   //     .then((data) => setMyReview(data));
   // }, [user?.email, logOut]);
 
-  const { data, isloading} = useQuery({
+  const { data: myreview = [], isloading, isFetching, refetch } = useQuery({
     queryKey: ['myReviews'], 
-    queryFn: () => fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`, {
-      headers: { authorization: `Bearer ${localStorage.getItem('auth-token')}`
-    }})
-    .then(res => res.json())
-    .then(data => console.log(data))
-  });
+    queryFn: async() => {
+      const res = await fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
+         headers: {
+           authorization : `Bearer ${localStorage.getItem('auth-token')}`
+         }});
+      const data = await res.json();
+      return data;
+ }});
 
-  if(isloading && loading){
+  if(myreview.length > 0){
+      myreview.sort(function(x,y){
+      return y.localTime.localeCompare(x.localTime);
+    });
+  };
+
+  if(isloading && loading && isFetching){
     return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
-  }
+  };
 
   return (
     <div>
@@ -66,11 +74,6 @@ const MyReviews = () => {
               <div>
                 <h1 className="text-2xl text-center">No Reviews Were Added Yet</h1>
               </div>
-              // <div className="flex items-center justify-center space-x-2">
-              //   <div className="w-4 h-4 rounded-full animate-pulse dark:bg-cyan-400"></div>
-              //   <div className="w-4 h-4 rounded-full animate-pulse dark:bg-cyan-400"></div>
-              //   <div className="w-4 h-4 rounded-full animate-pulse dark:bg-cyan-400"></div>
-              // </div>
             }
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -79,7 +82,7 @@ const MyReviews = () => {
               <EachReviewCards
                 key={index}
                 review={review}
-                setMyReview={setMyReview}
+                refetch={refetch}
                 myreview={myreview}
               ></EachReviewCards>
             ))}

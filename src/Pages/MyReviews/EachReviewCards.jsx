@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BsPatchCheckFill } from "react-icons/bs";
 
-const EachReviewCards = ({ review, myreview, setMyReview }) => {
+const EachReviewCards = ({ review, myreview, setMyReview, refetch }) => {
   const handleDelete = (review) => {
     console.log(`Deleting Review With Id: ${review._id}`);
     fetch(`https://pixel-cloud-server.vercel.app/reviews/${review._id}`, {
@@ -15,11 +15,13 @@ const EachReviewCards = ({ review, myreview, setMyReview }) => {
       .then((data) => {
         console.log(data);
         if (data.deletedCount > 0) {
+          refetch()
           toast("Review Deleted!");
-          const remainingUsers = myreview.filter(
-            (rvw) => rvw._id !== review._id
-          );
-          setMyReview(remainingUsers);
+         
+          // const remainingUsers = myreview.filter(
+          //   (rvw) => rvw._id !== review._id
+          // );
+          // setMyReview(remainingUsers);
         }
       });
   };
