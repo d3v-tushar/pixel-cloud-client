@@ -1,17 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
 import { AuthContext } from "../../Context/AuthProvider";
 import useTitle from "../../CustomHook/useTitle";
 import EachReviewCards from "./EachReviewCards";
 
 const MyReviews = () => {
   useTitle("My Reviews");
-  const { user, loading } = useContext(AuthContext);
-  // if(loading){
-  //   return <div className="min-h-screen grid justify-center ">
-  //     <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-sky-400"></div>
-  //   </div>
-  // };
+  const { user, loading, logOut } = useContext(AuthContext);
   // const [myreview, setMyReview] = useState([]);
   //console.log(myreview);
   // if(myreview.length > 0){
@@ -35,16 +31,38 @@ const MyReviews = () => {
   //     .then((data) => setMyReview(data));
   // }, [user?.email, logOut]);
 
-  const { data: myreview = [], isloading, isFetching, refetch } = useQuery({
-    queryKey: ['myReviews'], 
-    queryFn: async() => {
-      const res = await fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
-         headers: {
-           authorization : `Bearer ${localStorage.getItem('auth-token')}`
-         }});
-      const data = await res.json();
-      return data;
- }});
+//   const { data: myreview = [], isloading, isFetching, refetch } = useQuery({
+//     queryKey: ['myReviews'], 
+//     queryFn: async() => {
+//       const res = await fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`,{
+//          headers: {
+//           authorization : `Bearer ${localStorage.getItem('auth-token')}`
+//          }});
+//       const data = await res.json();
+//       return data;
+//  }});
+
+const { data: myreview = [], isloading, isFetching, refetch } = useQuery({
+  queryKey: ['sellers'],
+  queryFn: async () => {
+      try {
+          const res = await fetch(`https://pixel-cloud-server.vercel.app/myreviews?email=${user?.email}`, {
+              headers: {
+                  authorization: `Bearer ${localStorage.getItem('auth-token')}`
+              }
+          });
+          if(res.status === 401 || res.status === 403){
+              logOut();
+            }
+            else{
+              return res.json();
+              }
+          return data;
+      }
+      catch (error) {
+      }
+    }
+  });
 
   if(myreview.length > 0){
       myreview.sort(function(x,y){
@@ -52,8 +70,8 @@ const MyReviews = () => {
     });
   };
 
-  if(isloading && loading && isFetching){
-    return <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+  if(loading && isloading && isFetching){
+    return <ClipLoader color="#36d7b7" />
   };
 
   return (
@@ -67,9 +85,12 @@ const MyReviews = () => {
             <p className="max-w-3xl mx-auto mt-4 text-xl text-center dark:text-gray-400">
               You Can Edit & Detele Your Reviews Here
             </p>
+            {
+              loading && isloading && isFetching && <ClipLoader color="#36d7b7" />
+            }
           </div>
           <div className="w-full">
-          {
+            {
               myreview.length === 0 &&
               <div>
                 <h1 className="text-2xl text-center">No Reviews Were Added Yet</h1>
@@ -78,7 +99,7 @@ const MyReviews = () => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
            
-            {myreview.length > 0 && myreview.map((review, index) => (
+            { myreview.length > 0 && myreview.map((review, index) => (
               <EachReviewCards
                 key={index}
                 review={review}

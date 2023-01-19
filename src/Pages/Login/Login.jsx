@@ -14,6 +14,7 @@ const Login = () => {
   const [error, setError] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  console.log(from);
 
   //Email Password Login
   const handleSubmit = (e) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiEdit } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { BsPatchCheckFill } from "react-icons/bs";
 
 const EachReviewCards = ({ review, myreview, setMyReview, refetch }) => {
+  const [modal, setModal] =useState(review);
   const handleDelete = (review) => {
     console.log(`Deleting Review With Id: ${review._id}`);
     fetch(`https://pixel-cloud-server.vercel.app/reviews/${review._id}`, {
@@ -15,9 +16,8 @@ const EachReviewCards = ({ review, myreview, setMyReview, refetch }) => {
       .then((data) => {
         console.log(data);
         if (data.deletedCount > 0) {
-          refetch()
+          refetch();
           toast("Review Deleted!");
-         
           // const remainingUsers = myreview.filter(
           //   (rvw) => rvw._id !== review._id
           // );
@@ -26,39 +26,40 @@ const EachReviewCards = ({ review, myreview, setMyReview, refetch }) => {
       });
   };
 
-
-  const handleUpdate = (e) =>{
+  const handleUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
     const updateMessage = e.target.message.value;
-    const message = {message: updateMessage};
+    const message = { message: updateMessage };
     fetch(`https://pixel-cloud-server.vercel.app/reviews/${review._id}`, {
-        method: "PUT",
-        headers: {
-            "content-type": "application/json"
-        },
-        body: JSON.stringify(message)
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(message),
     })
-    .then(res => res.json())
-    .then(data =>{
-        if(data.modifiedCount > 0){
-            toast('Review Updated');
-            console.log(data);
-            const filterd = myreview.filter(flter => flter._id !== review._id);
-            const remaining = myreview.find(flter => flter._id === review._id);
-            console.log(remaining);
-            form.reset();
-            // remaining[message] = message;
-            // const currentReview = {...remaining};
-            // console.log(currentReview)
-            // currentReview.message = message;
-            // const newUpdate = [...currentReview, filterd];
-            // setMyReview(newUpdate);
-            window.location.reload();
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          setModal(null);
+          toast("Review Updated");
+          console.log(data);
+          const filterd = myreview.filter((flter) => flter._id !== review._id);
+          const remaining = myreview.find((flter) => flter._id === review._id);
+          console.log(remaining);
+          form.reset();
+          setModal(null)
+          // remaining[message] = message;
+          // const currentReview = {...remaining};
+          // console.log(currentReview)
+          // currentReview.message = message;
+          // const newUpdate = [...currentReview, filterd];
+          // setMyReview(newUpdate);
+          // window.location.reload();
+          refetch();
         }
-    })
-    
-}
+      });
+  };
 
   return (
     <div>
@@ -96,32 +97,37 @@ const EachReviewCards = ({ review, myreview, setMyReview, refetch }) => {
         </div>
 
         <div className="w-full ">
-         <div className="grid grid-cols-3">
-         <p className="mt-4 text-md font-semibold col-span-2 flex items-center"><span className="text-blue-600"><BsPatchCheckFill/></span><span className='text-yellow-400 mx-1'> {review.title}</span></p>
+          <div className="grid grid-cols-3">
+            <p className="mt-4 text-md font-semibold col-span-2 flex items-center">
+              <span className="text-blue-600 dark:text-blue-400">
+                <BsPatchCheckFill />
+              </span>
+              <span className="text-yellow-400 mx-1"> {review.title}</span>
+            </p>
             <div className="flex justify-end items-end btn-group mt-4">
-          <button
-            onClick={() => handleDelete(review)}
-            className="btn btn-sm btn-primary"
-          >
-            <RiDeleteBin5Line />
-          </button>
-          <label htmlFor="my-modal-3" className="btn btn-sm btn-accent">
-            <BiEdit/>
-          </label>
+              <button
+                onClick={() => handleDelete(review)}
+                className="btn btn-sm btn-primary"
+              >
+                <RiDeleteBin5Line />
+              </button>
+              <label htmlFor="my-modal-3" className="btn btn-sm btn-accent">
+                <BiEdit />
+              </label>
+            </div>
+          </div>
+          <div className="divider"></div>
+          <div className="p-4 space-y-2 text-sm text-gray-100 dark:text-gray-100">
+            <h3>{review.message}</h3>
+          </div>
         </div>
-         </div>
-        <div className="divider"></div> 
-        <div className="p-4 space-y-2 text-sm text-gray-100 dark:text-gray-100">
-          <h3>
-            {review.message}
-          </h3>
-        </div>
- 
-      </div>
       </div>
 
       {/* Put this part before </body> tag */}
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      {
+        modal &&
+        <>
+        <input type="checkbox" id="my-modal-3" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
@@ -130,15 +136,28 @@ const EachReviewCards = ({ review, myreview, setMyReview, refetch }) => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold mb-3 text-center">
-           Update Review Here
+          <h3 className="text-lg font-bold text-white mb-3 text-center">
+            Update Review Here
           </h3>
           <form onSubmit={handleUpdate}>
-          <textarea required name='message' rows="3" placeholder="Message..." className="border w-full p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
-          <div className="mx-auto my-2"><button type="submit" className="btn btn-primary">Update</button></div>
+            <textarea
+              required
+              name="message"
+              rows="3"
+              placeholder="Message..."
+              className="border w-full p-4 rounded-md resize-none
+              text-gray-100 dark:bg-gray-900"
+            ></textarea>
+            <div className="mx-auto my-2">
+              <button type="submit" className="btn btn-primary">
+                Update
+              </button>
+            </div>
           </form>
         </div>
       </div>
+        </>
+      }
       <ToastContainer />
     </div>
   );
